@@ -354,7 +354,7 @@ Once complete, copy `./server/requestUnicorn.js` to `./awsmobilejs/backend/cloud
 
 Run `awsmobile push` to publish the backend changes to AWS.
 
-Next, open the ./src/pages/MainApp.js page. Edit the `hasApi()` method and uncomment the code:
+Next, open the `./src/pages/MainApp.js` page. Edit the `hasApi()` method and uncomment the code:
 
 ```javascript
 hasApi() {
