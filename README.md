@@ -26,7 +26,7 @@ The design team has dropped the final version of the web site, but has not set u
 Clone the project & change into the directory:
 
 ```
-git clone https://github.com/aws-samples/wild-rydes-mobile
+git clone https://github.com/onlybakam/wild-rydes-mobile
 cd wild-rydes-mobile
 ```
 
@@ -56,7 +56,7 @@ The AWS Mobile Hub project will be created.
 
 __To run the projecte locally:__
 
-Run the project locally using either npm or yarn: 
+Run the project locally using either npm or yarn:
 
 ```
 yarn start
@@ -100,7 +100,8 @@ import awsConfig from '../aws-exports';
 
 Then look for `/* TODO: HANDLE FORM INPUT */` - this is where we need to add code to submit the email address into the Amazon Pinpoint analytics platform.  Replace the onEmailSubmitted() method that is there now with the following:
 
-```
+```javascript
+  /* DONE: HANDLE FORM INPUT */
   async onEmailSubmitted(event) {
     event.preventDefault();
 
@@ -142,8 +143,8 @@ Then look for `/* TODO: HANDLE FORM INPUT */` - this is where we need to add cod
         this.setState({ email: '', emailsubmitted: true });
       }
     });
-    /* END OF PINPOINT CHANGES */
   }
+  /* END OF PINPOINT CHANGES */
 ```
 
 Change the function to "async" by adding async in the front of `onEmailSubmitted(event)`
@@ -198,7 +199,7 @@ awsmobile push
 
 This will update the backend without publishing updated code.  Now, update the `src/auth/SignUp.js` file to do the sign-up process:
 
-```
+```javascript
   async onSubmitForm(e) {
     e.preventDefault();
     try {
@@ -241,7 +242,7 @@ This will update the backend without publishing updated code.  Now, update the `
 
 Update the `src/auth/SignIn.js` file to do the sign-in process:
 
-```
+```javascript
   async onSubmitForm(e) {
     e.preventDefault();
     try {
@@ -353,18 +354,18 @@ Once complete, copy `./server/requestUnicorn.js` to `./awsmobilejs/backend/cloud
 
 Run `awsmobile push` to publish the backend changes to AWS.
 
-Next, edit the hasApi method and uncomment the code:
+Next, open the ./src/pages/MainApp.js page. Edit the `hasApi()` method and uncomment the code:
 
-```
+```javascript
 hasApi() {
   const api = awsConfig.aws_cloud_logic_custom.filter(v => v.name === 'requestUnicorn');
   return (typeof api !== 'undefined');
 }
 ```
 
-Finally, edit the `./src/pages/MainApp.js` page.  Adjust the getData() method to read as follows:
+Finally, adjust the `getData()` method to read as follows:
 
-```
+```javascript
   async getData(pin) {
     const body = {
       PickupLocation: {
@@ -377,4 +378,3 @@ Finally, edit the `./src/pages/MainApp.js` page.  Adjust the getData() method to
 ```
 
 Publish the application using `awsmobile publish`.  Run the application (either locally or from the cloud), log in.  Click somewhere on the map to set the pickup location, then click Request to request the ride.
-
